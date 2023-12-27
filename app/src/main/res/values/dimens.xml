@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="title_size">304dp</dimen>
+    <dimen name="height">56dp</dimen>
+    <dimen name="size_48dp">48dp</dimen>
+    <dimen name="size_4dp">4dp</dimen>
+    <dimen name="padding_24dp">24dp</dimen>
+    <dimen name="size_12dp">12dp</dimen>
+    <dimen name="size_10dp">10dp</dimen>
+    <dimen name="size_52dp">52dp</dimen>
+    <dimen name="padding_96">96dp</dimen>
+    <dimen name="text_size">26sp</dimen>
+    <dimen name="text_size_16">16sp</dimen>
+    <dimen name="left_padding">16dp</dimen>
+    <dimen name="up_padding">24dp</dimen>
+    <dimen name="right_padding">16dp</dimen>
+    <dimen name="bottom_padding">28dp</dimen>
+    <dimen name="icon_size">24sp</dimen>
+    <dimen name="icon_padding">8dp</dimen>
+    <dimen name="corner_radius">16dp</dimen>
+    <dimen name="size_0dp">0dp</dimen>
+</resources>
