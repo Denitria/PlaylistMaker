@@ -10,7 +10,7 @@
 
     <TextView
 
-        android:layout_width="@dimen/title_size"
+        android:layout_width="wrap_content"
         android:layout_height="@dimen/height"
         android:layout_marginStart="@dimen/size_4dp"
         android:layout_marginTop="@dimen/size_4dp"
@@ -41,7 +41,7 @@
         <Button
             android:id="@+id/buttonSearch"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/size_4dp"
             android:backgroundTint="@color/white"
@@ -62,7 +62,7 @@
         <Button
             android:id="@+id/buttonMediateka"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_marginBottom="@dimen/size_4dp"
             android:backgroundTint="@color/white"
@@ -83,7 +83,7 @@
         <Button
             android:id="@+id/buttonSettings"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/size_0dp"
+            android:layout_height="0dp"
             android:layout_weight="1"
             android:backgroundTint="@color/white"
             android:text="@string/settings_button"

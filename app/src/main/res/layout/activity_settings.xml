@@ -29,7 +29,7 @@
         </Button>
 
         <TextView
-            android:layout_width="@dimen/title_size"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:fontFamily="@font/yandex_sans_medium"
             android:paddingStart="@dimen/size_4dp"
@@ -38,9 +38,7 @@
             android:textAllCaps="false"
             android:textColor="@color/text_and_icon_color"
             android:textSize="@dimen/text_size"
-            tools:ignore="RtlSymmetry">
-
-        </TextView>
+            tools:ignore="RtlSymmetry"/>
 
 
     </LinearLayout>
