@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:theme="@style/Theme.PlaylistMaker"
+    android:layout_width="match_parent"
+    android:layout_height="61dp">
+    <ImageView
+        android:id="@+id/trackImage"
+        android:layout_marginStart="@dimen/size_12dp"
+        android:layout_gravity="center"
+        android:layout_width="@dimen/size_45"
+        android:layout_height="@dimen/size_45"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/size_8dp"
+        android:layout_marginVertical="@dimen/size_12dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/trackName"
+            style="@style/NameTrack"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="start"
+            android:maxLines="1"
+            android:paddingBottom="1dp"
+            android:singleLine="true"
+            android:textFontWeight="400"
+            tools:text="Track name p"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center|start"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/artistName"
+                style="@style/SubTitleStyle"
+                android:layout_marginEnd="@dimen/size_4dp"
+                android:maxWidth="200dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                tools:text="Artist name p"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="13dp"
+                android:layout_marginEnd="@dimen/size_4dp"
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ellipse"
+                style="@style/Ellipse"/>
+
+            <TextView
+                android:id="@+id/trackTime"
+                style="@style/SubTitleStyle"
+                tools:text="track time p"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <ImageView
+        android:layout_marginEnd="@dimen/size_12dp"
+        android:layout_width="@dimen/padding_24dp"
+        android:layout_height="@dimen/padding_24dp"
+        android:layout_gravity="center|end"
+        android:src="@drawable/ic_arrow_forward"
+        style="@style/ArrowForward"/>
+</LinearLayout>
