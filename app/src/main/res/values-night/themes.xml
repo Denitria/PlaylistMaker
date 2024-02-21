@@ -3,11 +3,15 @@
     <style name="Base.Theme.PlaylistMaker" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <item name="backgroundColor">@color/yp_black</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="iconTint">@color/white</item>
     </style>
-    <style name="colorMain">
-        <item name="android:background">@color/black</item>
-    </style>
-    <style name="colorSettings">
-        <item name="android:background">@color/black</item>
+    <style name="Theme.PlaylistMaker" parent="Base.Theme.PlaylistMaker">
+        <item name="colorPrimary">@color/yp_black</item>
+        <item name="colorSecondary">@color/white</item>
+        <item name="colorOnPrimary">@color/yp_black</item>
+        <item name="android:background">@color/yp_black</item>
+        <item name="android:iconTint">@color/yp_black</item>
     </style>
 </resources>
