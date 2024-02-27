@@ -14,4 +14,7 @@
     <string name="text_mail">Спасибо разработчикам и разработчицам за крутое приложение!</string>
     <string name="mail_address">dogma5545@yandex.ru</string>
     <string name="terms_of_use">https://yandex.ru/legal/practicum_offer/</string>
+    <string name="nothing_found">Ничего не нашлось</string>
+    <string name="something_went_wrong">Проблемы со связью \n \n Загрузка не удалась. Проверьте подключение к интернету</string>
+    <string name="refresh">Обновить</string>
 </resources>

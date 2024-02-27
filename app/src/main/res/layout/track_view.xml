@@ -5,6 +5,7 @@
     android:theme="@style/Theme.PlaylistMaker"
     android:layout_width="match_parent"
     android:layout_height="60dp">
+
     <ImageView
         android:id="@+id/trackImage"
         android:layout_marginStart="@dimen/size_12dp"
@@ -19,8 +20,8 @@
         android:layout_marginHorizontal="@dimen/size_8dp"
         android:layout_marginVertical="@dimen/size_12dp"
         android:layout_weight="1"
-        android:orientation="vertical">
-
+        android:orientation="vertical"
+        tools:ignore="InefficientWeight">
         <TextView
             android:id="@+id/trackName"
             style="@style/NameTrack"
@@ -33,22 +34,17 @@
             android:singleLine="true"
             android:textFontWeight="400"
             tools:text="Track name p"/>
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center|start"
-            android:orientation="horizontal">
-
+            android:layout_height="match_parent">
             <TextView
                 android:id="@+id/artistName"
                 style="@style/SubTitleStyle"
                 android:layout_marginEnd="@dimen/size_4dp"
-                android:maxWidth="200dp"
                 android:ellipsize="end"
                 android:singleLine="true"
-                tools:text="Artist name p"/>
-
+                tools:text="Artist name p"
+                tools:ignore="TextContrastCheck"/>
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,13 +52,12 @@
                 android:layout_gravity="center_vertical"
                 android:src="@drawable/ellipse"
                 style="@style/Ellipse"/>
-
             <TextView
                 android:id="@+id/trackTime"
                 style="@style/SubTitleStyle"
                 tools:text="track time p"/>
-
         </LinearLayout>
+
     </LinearLayout>
 
     <ImageView
