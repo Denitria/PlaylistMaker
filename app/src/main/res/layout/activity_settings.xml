@@ -36,12 +36,14 @@
     <LinearLayout
         style="@style/BoxForMenu">
 
-        <Switch
-            android:checked="false"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/switchTheme"
             android:text="@string/dark_theme"
-            style="@style/Switch"
-
-            tools:ignore="UseSwitchCompatOrMaterialXml" />
+            android:fontFamily="@font/ys_display_regular"
+            android:textSize="@dimen/text_size_16"
+            android:textAllCaps="false"
+            android:layout_gravity="center_vertical"
+            style="@style/Switch"/>
         <TextView
             android:id="@+id/buttonShare"
             style="@style/StyleMenuSettings"
