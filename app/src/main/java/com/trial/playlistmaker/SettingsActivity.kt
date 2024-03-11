@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.widget.SwitchCompat
 
 
 class SettingsActivity : AppCompatActivity() {
@@ -16,6 +17,14 @@ class SettingsActivity : AppCompatActivity() {
         val backToMain = findViewById<Button>(R.id.buttonBack)
         backToMain.setOnClickListener {
             finish()
+        }
+
+        val nightThemeSwitcher = findViewById<SwitchCompat>(R.id.switchTheme)
+        nightThemeSwitcher.isChecked = (applicationContext as App).nightTheme
+        nightThemeSwitcher.setOnCheckedChangeListener { switcher, isChecked ->
+            (applicationContext as App).switchNightTheme(isChecked)
+            (applicationContext as App).settingsSharedPrefs.edit()
+                .putBoolean(SETTING_THEME, isChecked).apply()
         }
 
         val buttonShare = findViewById<TextView>(R.id.buttonShare)

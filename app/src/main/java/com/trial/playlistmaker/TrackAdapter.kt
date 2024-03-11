@@ -13,22 +13,28 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import java.util.Locale
 
-class TrackAdapter(private val data: List<Track>) :
-    RecyclerView.Adapter<TrackAdapter.TrackViewHolder>() {
+class TrackAdapter(private val data: ArrayList<Track>,
+                   private val onTrackClickListener: OnTrackClickListener
+    ) :
+    RecyclerView.Adapter<TrackViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.track_view, parent, false)
         return TrackViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(data[position])
-    }
-
     override fun getItemCount(): Int {
-        return data.size
+        return data!!.size
     }
 
+    override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
+        holder.bind(data!![position])
+        holder.itemView.setOnClickListener {
+            onTrackClickListener.onTrackClick(data[holder.adapterPosition])
+        }
+
+    }
+}
     class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val trackName: TextView = itemView.findViewById(R.id.trackName)
         private val trackImage: ImageView = itemView.findViewById(R.id.trackImage)
@@ -57,4 +63,3 @@ class TrackAdapter(private val data: List<Track>) :
             ).toInt()
         }
     }
-}
