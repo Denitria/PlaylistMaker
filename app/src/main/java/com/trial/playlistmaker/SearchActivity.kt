@@ -58,7 +58,7 @@ class SearchActivity : AppCompatActivity() {
         searchHistoryRecyclerView = findViewById(R.id.searchHistoryRecyclerView)
         searchHistory = SearchHistory(applicationContext)
         clearHistory = findViewById(R.id.buttonClearTrackHistory)
-        trackHistoryAdapter = TrackHistoryAdapter()
+        trackHistoryAdapter = TrackHistoryAdapter(searchHistory.getHistory())
 
         val backToMain = findViewById<Button>(R.id.buttonBack)
         backToMain.setOnClickListener {
@@ -123,7 +123,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               clearButton.visibility = clearButtonVisibility(s)
+                clearButton.visibility = clearButtonVisibility(s)
 
                 if (inputEditText.hasFocus() && s?.isEmpty() == true) {
                     searchView.visibility = View.GONE
@@ -247,8 +247,9 @@ class SearchActivity : AppCompatActivity() {
         requestText = savedInstanceState.getString(KEY, TEXT)
     }
 
-    private companion object {
+    companion object {
         const val KEY = "SEARCH"
         const val TEXT = ""
+        const val TRACK_VALUE = "track"
     }
 }
