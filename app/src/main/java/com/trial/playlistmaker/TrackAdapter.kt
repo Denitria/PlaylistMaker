@@ -1,7 +1,6 @@
 package com.trial.playlistmaker
 
 import android.content.Context
-import android.content.Intent
 import android.icu.text.SimpleDateFormat
 import android.util.TypedValue
 import android.view.LayoutInflater
@@ -12,7 +11,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.google.gson.Gson
 import java.util.Locale
 
 class TrackAdapter(private val data: ArrayList<Track>,
@@ -31,17 +29,11 @@ class TrackAdapter(private val data: ArrayList<Track>,
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         holder.bind(data!![position])
-        holder.itemView.setOnClickListener {
-            onTrackClickListener.onTrackClick(data[holder.adapterPosition])
-            val context = holder.itemView.context
-            val audioPlayerIntent = Intent(context, AudioPlayerActivity::class.java)
-            val gson = Gson()
-            val json = gson.toJson(data[position])
-            context.startActivity(audioPlayerIntent.putExtra(SearchActivity.TRACK_VALUE, json))
+        holder.itemView.setOnClickListener { onTrackClickListener.onTrackClick(data[holder.adapterPosition]) }
         }
 
     }
-}
+
 class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val trackName: TextView = itemView.findViewById(R.id.trackName)
     private val trackImage: ImageView = itemView.findViewById(R.id.trackImage)

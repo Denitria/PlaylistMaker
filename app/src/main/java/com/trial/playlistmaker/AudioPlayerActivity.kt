@@ -37,7 +37,11 @@ class AudioPlayerActivity : AppCompatActivity() {
         binding.tvArtistName.text = track.artistName
         binding.tvTrackDuration.text = formatMilliseconds(track.trackTime.toLong())
         binding.tvTrackAlbum.text = track.collectionName
-        binding.tvTrackYear.text = track.releaseDate.substring(0, 4)
+        try {
+            binding.tvTrackYear.text = track.releaseDate.substring(0, 4)
+        } catch (e: Exception) {
+            binding.tvTrackYear.text = "-"
+        }
         binding.tvTrackGenre.text = track.genre
         binding.tvTrackCountry.text = track.country
 

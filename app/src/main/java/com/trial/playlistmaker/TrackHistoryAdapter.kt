@@ -1,23 +1,16 @@
 package com.trial.playlistmaker
 
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.google.gson.Gson
-import com.trial.playlistmaker.SearchActivity.Companion.TRACK_VALUE
 
-class TrackHistoryAdapter(private val searchHistoryList: List<Track>
+
+class TrackHistoryAdapter(    private val onTrackClickListener: OnTrackClickListener
 ) :
     RecyclerView.Adapter<TrackViewHolder>() {
     private var tracksHistoryList: MutableList<Track> = mutableListOf()
     private val limit = 10
-    private var listener: OnTrackClickListener? = null
-
-    fun setOnItemClickListener(listener: OnTrackClickListener) {
-        this.listener = listener
-    }
     fun updateTracks(newTracks: MutableList<Track>) {
         val oldTracks = tracksHistoryList
         tracksHistoryList.clear()
@@ -60,12 +53,6 @@ class TrackHistoryAdapter(private val searchHistoryList: List<Track>
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         holder.bind(tracksHistoryList[position])
-        holder.itemView.setOnClickListener {
-            val intent = Intent(holder.itemView.context, AudioPlayerActivity::class.java)
-            val gson = Gson()
-            val json = gson.toJson(tracksHistoryList[position])
-            intent.putExtra(TRACK_VALUE, json)
-            holder.itemView.context.startActivity(intent)
+        holder.itemView.setOnClickListener { onTrackClickListener.onTrackClick(tracksHistoryList[holder.adapterPosition]) }
         }
     }
-}
