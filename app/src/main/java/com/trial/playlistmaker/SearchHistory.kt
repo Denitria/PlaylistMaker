@@ -8,7 +8,7 @@ import com.google.gson.reflect.TypeToken
 const val SEARCH_HISTORY = "search_history"
 const val SEARCH_HISTORY_KEY = "search_history_key"
 
-class SearchHistory(private val context: Context) {
+class SearchHistory(context: Context) {
     private val sharedPrefs = context.getSharedPreferences(SEARCH_HISTORY, AppCompatActivity.MODE_PRIVATE)
     var searchHistoryList: MutableList<Track> = mutableListOf()
 
