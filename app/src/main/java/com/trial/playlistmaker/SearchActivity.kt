@@ -2,6 +2,7 @@ package com.trial.playlistmaker
 
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -21,6 +22,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import com.google.gson.Gson
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var inputEditText: EditText
@@ -38,6 +40,7 @@ class SearchActivity : AppCompatActivity() {
     private lateinit var clearHistory: Button
     private lateinit var searchHistory: SearchHistory
     private lateinit var onTrackClickListener: OnTrackClickListener
+    private lateinit var onHistoryClickListener: OnTrackClickListener
     private lateinit var trackHistoryAdapter: TrackHistoryAdapter
     private val trackList = ArrayList<Track>()
     private val trackHistoryList: ArrayList<Track> = arrayListOf()
@@ -58,7 +61,6 @@ class SearchActivity : AppCompatActivity() {
         searchHistoryRecyclerView = findViewById(R.id.searchHistoryRecyclerView)
         searchHistory = SearchHistory(applicationContext)
         clearHistory = findViewById(R.id.buttonClearTrackHistory)
-        trackHistoryAdapter = TrackHistoryAdapter()
 
         val backToMain = findViewById<Button>(R.id.buttonBack)
         backToMain.setOnClickListener {
@@ -66,6 +68,16 @@ class SearchActivity : AppCompatActivity() {
         }
 
         iTunesBaseUrl = "https://itunes.apple.com"
+
+        onHistoryClickListener = object : OnTrackClickListener {
+            override fun onTrackClick(track: Track) {
+                val audioIntent = Intent(this@SearchActivity, AudioPlayerActivity::class.java)
+                val gson = Gson()
+                val json = gson.toJson(track)
+                startActivity(audioIntent.putExtra(TRACK_VALUE, json))
+            }
+        }
+        trackHistoryAdapter = TrackHistoryAdapter(onHistoryClickListener)
 
         retrofit = Retrofit.Builder()
             .baseUrl(iTunesBaseUrl)
@@ -76,30 +88,37 @@ class SearchActivity : AppCompatActivity() {
         searchHistoryRecyclerView.adapter = trackHistoryAdapter
         trackHistoryAdapter.updateTracks(searchHistory.getHistory())
 
+
         onTrackClickListener = object : OnTrackClickListener {
             override fun onTrackClick(track: Track) {
                 searchHistory.searchHistoryList
                 searchHistory.addTrackToHistory(track)
                 trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList!!)
-                trackHistoryAdapter.run {
-                    notifyDataSetChanged()
-                }
+                trackHistoryAdapter.notifyDataSetChanged()
+
+                val audioPlayerIntent = Intent(this@SearchActivity, AudioPlayerActivity::class.java)
+                val gson = Gson()
+                val json = gson.toJson(track)
+                startActivity(audioPlayerIntent.putExtra(TRACK_VALUE, json))
             }
         }
 
+
         if (trackHistoryAdapter.itemCount > 0) {
+            searchView.visibility = View.GONE
             searchHistoryView.visibility = View.VISIBLE
         } else {
+            searchView.visibility = View.VISIBLE
             searchHistoryView.visibility = View.GONE
         }
 
         trackAdapter = TrackAdapter(trackList, onTrackClickListener)
 
-        clearHistory.setOnClickListener() {
+        clearHistory.setOnClickListener {
             searchHistory.clearHistory()
             trackHistoryAdapter.updateTracks(trackHistoryList)
             searchHistoryView.visibility = View.GONE
-            trackHistoryAdapter.run { notifyDataSetChanged() }
+            trackHistoryAdapter.notifyDataSetChanged()
         }
 
         val clearButton = findViewById<ImageView>(R.id.clearIcon)
@@ -123,7 +142,7 @@ class SearchActivity : AppCompatActivity() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-               clearButton.visibility = clearButtonVisibility(s)
+                clearButton.visibility = clearButtonVisibility(s)
 
                 if (inputEditText.hasFocus() && s?.isEmpty() == true) {
                     searchView.visibility = View.GONE
@@ -247,8 +266,9 @@ class SearchActivity : AppCompatActivity() {
         requestText = savedInstanceState.getString(KEY, TEXT)
     }
 
-    private companion object {
+    companion object {
         const val KEY = "SEARCH"
         const val TEXT = ""
+        const val TRACK_VALUE = "track"
     }
 }
