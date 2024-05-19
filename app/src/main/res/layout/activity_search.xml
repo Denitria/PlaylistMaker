@@ -145,6 +145,7 @@
             style="@style/RefreshButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_36"
+            android:paddingBottom="@dimen/size_4dp"
             android:layout_marginVertical="@dimen/padding_24dp"
             android:text="@string/clear_history" />
 

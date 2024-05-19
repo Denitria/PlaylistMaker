@@ -62,6 +62,10 @@ class SearchActivity : AppCompatActivity() {
                     val gson = Gson()
                     val json = gson.toJson(track)
                     startActivity(audioIntent.putExtra(TRACK_VALUE, json))
+                    searchHistory.searchHistoryList
+                    searchHistory.addTrackToHistory(track)
+                    trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList!!)
+                    trackHistoryAdapter.notifyDataSetChanged()
                 }
             }
         }
@@ -194,10 +198,10 @@ class SearchActivity : AppCompatActivity() {
     private fun search() {
 
         if (binding.inputEditText.text.isNotEmpty()) {
-            binding.placeholderView.visibility = View.GONE
-            binding.searchHistoryGroupView.visibility = View.GONE
-            binding.searchView.visibility = View.GONE
             binding.progressBar.visibility = View.VISIBLE
+            binding.placeholderView.visibility = View.GONE
+            binding.searchRecyclerView.visibility = View.GONE
+
             iTunesService.search(binding.inputEditText.text.toString()).enqueue(/* callback = */
                 object :
                     Callback<TracksResponse> {
@@ -207,10 +211,9 @@ class SearchActivity : AppCompatActivity() {
                         response: Response<TracksResponse>,
                     ) {
                         val songs = response.body()?.results
+                        binding.progressBar.visibility = View.GONE
+                        binding.searchRecyclerView.visibility = View.VISIBLE
                         if (response.isSuccessful) {
-                            binding.progressBar.visibility = View.GONE
-                            binding.searchView.visibility = View.VISIBLE
-
                             trackList.clear()
                             trackAdapter.notifyDataSetChanged()
 
@@ -253,6 +256,8 @@ class SearchActivity : AppCompatActivity() {
 
                 })
         }
+
+
     }
 
     private fun clearButtonVisibility(s: CharSequence?): Int {
