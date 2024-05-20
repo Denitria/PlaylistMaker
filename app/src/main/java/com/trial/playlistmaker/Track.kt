@@ -13,6 +13,7 @@ data class Track(
     val trackId: Int,
     val collectionName: String,
     val releaseDate: String,
+    val previewUrl: String,
     @SerializedName("primaryGenreName") val genre: String,
     val country: String,
 ) {

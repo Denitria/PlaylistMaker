@@ -48,7 +48,7 @@
             android:singleLine="true"
             android:textCursorDrawable="@drawable/text_cursor" />
         <ImageView
-            android:id="@+id/clearIcon"
+            android:id="@+id/clearButton"
             style="@style/ClearButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -57,6 +57,14 @@
             android:layout_marginEnd="@dimen/size_28dp"
             app:srcCompat="@drawable/clear_button" />
     </FrameLayout>
+
+    <ProgressBar android:id="@+id/progressBar"
+        android:layout_width="@dimen/size_44"
+        android:layout_height="@dimen/size_44"
+        android:layout_marginTop="144dp"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/yp_blue"
+        android:visibility="gone" />
 
     <FrameLayout
         android:id="@+id/searchView"
@@ -137,6 +145,7 @@
             style="@style/RefreshButton"
             android:layout_width="wrap_content"
             android:layout_height="@dimen/size_36"
+            android:paddingBottom="@dimen/size_4dp"
             android:layout_marginVertical="@dimen/padding_24dp"
             android:text="@string/clear_history" />
 

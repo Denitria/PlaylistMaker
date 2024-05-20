@@ -85,7 +85,7 @@
     <!--Кнопка обновить-->
     <style name="RefreshButton">
         <item name="android:backgroundTint">@color/white</item>
-        <item name="android:paddingBottom">@dimen/size_8dp</item>
+        <item name="android:paddingBottom">@dimen/size_4dp</item>
         <item name="android:textColor">@color/yp_black</item>
         <item name="android:textSize">@dimen/text_size_13</item>
         <item name="fontFamily">@font/ys_display_medium</item>
