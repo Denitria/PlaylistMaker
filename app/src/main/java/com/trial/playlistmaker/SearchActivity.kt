@@ -244,10 +244,6 @@ class SearchActivity : AppCompatActivity() {
                         binding.errorImage.setImageResource(R.drawable.error_internet)
                         binding.refreshButton.visibility = View.VISIBLE
 
-                        showMessage(
-                            getString(R.string.something_went_wrong),
-                            t.message.toString()
-                        )
                         binding.refreshButton.setOnClickListener {
                             iTunesService.search(binding.inputEditText.text.toString())
                                 .enqueue(this)
