@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -21,7 +21,14 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import com.google.gson.Gson
+import com.trial.playlistmaker.presentation.ui.player.AudioPlayerActivity
+import com.trial.playlistmaker.data.network.ITunesAPI
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.data.SearchHistory
+import com.trial.playlistmaker.data.dto.TracksResponse
+import com.trial.playlistmaker.domain.models.Track
 import com.trial.playlistmaker.databinding.ActivitySearchBinding
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding

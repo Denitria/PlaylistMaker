@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.settings
 
 import android.content.Intent
 import android.net.Uri
@@ -7,6 +7,9 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.SwitchCompat
+import com.trial.playlistmaker.tools.App
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.tools.SETTING_THEME
 
 
 class SettingsActivity : AppCompatActivity() {

@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.content.Context
 import android.icu.text.SimpleDateFormat
@@ -11,6 +11,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
+import com.trial.playlistmaker.domain.models.Track
 import java.util.Locale
 
 class TrackAdapter(private val data: ArrayList<Track>,

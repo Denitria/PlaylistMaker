@@ -1,9 +1,12 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
+import com.trial.playlistmaker.domain.models.Track
 
 
 class TrackHistoryAdapter(    private val onTrackClickListener: OnTrackClickListener

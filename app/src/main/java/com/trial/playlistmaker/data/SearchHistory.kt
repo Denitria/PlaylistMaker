@@ -1,9 +1,10 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.data
 
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.trial.playlistmaker.domain.models.Track
 
 const val SEARCH_HISTORY = "search_history"
 const val SEARCH_HISTORY_KEY = "search_history_key"

@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.domain.models
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
