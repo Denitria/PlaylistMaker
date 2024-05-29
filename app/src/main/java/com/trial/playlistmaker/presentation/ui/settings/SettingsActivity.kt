@@ -2,13 +2,13 @@ package com.trial.playlistmaker.presentation.ui.settings
 
 import android.content.Intent
 import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SwitchCompat
-import com.trial.playlistmaker.tools.App
 import com.trial.playlistmaker.R
+import com.trial.playlistmaker.tools.App
 import com.trial.playlistmaker.tools.SETTING_THEME
 
 
@@ -47,17 +47,17 @@ class SettingsActivity : AppCompatActivity() {
         val textMail = getString(R.string.text_mail)
         val buttonSupport = findViewById<TextView>(R.id.buttonSupport)
 
-            val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("mailto:")
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(mailAddress))
-                putExtra(Intent.EXTRA_SUBJECT, subjectMail)
-                putExtra(Intent.EXTRA_TEXT, textMail)
-            }
-            buttonSupport.setOnClickListener {
-                startActivity(Intent.createChooser(intent, null))
-            }
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            data = Uri.parse("mailto:")
+            putExtra(Intent.EXTRA_EMAIL, arrayOf(mailAddress))
+            putExtra(Intent.EXTRA_SUBJECT, subjectMail)
+            putExtra(Intent.EXTRA_TEXT, textMail)
+        }
+        buttonSupport.setOnClickListener {
+            startActivity(Intent.createChooser(intent, null))
+        }
 
-        val buttonTerms= findViewById<TextView>(R.id.termsOfUse)
+        val buttonTerms = findViewById<TextView>(R.id.termsOfUse)
         buttonTerms.setOnClickListener {
             val linkTerms = getString(R.string.terms_of_use)
             val intent = Intent(Intent.ACTION_VIEW)

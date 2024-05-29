@@ -10,7 +10,8 @@ const val SEARCH_HISTORY = "search_history"
 const val SEARCH_HISTORY_KEY = "search_history_key"
 
 class SearchHistory(context: Context) {
-    private val sharedPrefs = context.getSharedPreferences(SEARCH_HISTORY, AppCompatActivity.MODE_PRIVATE)
+    private val sharedPrefs =
+        context.getSharedPreferences(SEARCH_HISTORY, AppCompatActivity.MODE_PRIVATE)
     var searchHistoryList: MutableList<Track> = mutableListOf()
 
     fun clearHistory() {
@@ -18,9 +19,10 @@ class SearchHistory(context: Context) {
     }
 
     fun getHistory(): MutableList<Track> {
-        val itemsJson: String = sharedPrefs.getString(SEARCH_HISTORY_KEY, null) ?: return mutableListOf()
+        val itemsJson: String =
+            sharedPrefs.getString(SEARCH_HISTORY_KEY, null) ?: return mutableListOf()
 
-        return Gson().fromJson(itemsJson, object: TypeToken<MutableList<Track>>() {}.type)
+        return Gson().fromJson(itemsJson, object : TypeToken<MutableList<Track>>() {}.type)
     }
 
     private fun putTrackToHistory(tracks: MutableList<Track>?) {
@@ -29,7 +31,7 @@ class SearchHistory(context: Context) {
 
     fun addTrackToHistory(track: Track) {
         searchHistoryList = getHistory()
-        if (searchHistoryList.find{ it.trackId == track.trackId } != null) {
+        if (searchHistoryList.find { it.trackId == track.trackId } != null) {
             searchHistoryList.remove(track)
         }
 

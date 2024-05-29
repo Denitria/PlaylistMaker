@@ -1,7 +1,7 @@
 package com.trial.playlistmaker.presentation.ui.media
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.trial.playlistmaker.R
 
 class MediatekaActivity : AppCompatActivity() {

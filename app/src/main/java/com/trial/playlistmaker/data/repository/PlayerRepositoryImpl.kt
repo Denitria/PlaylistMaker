@@ -3,7 +3,7 @@ package com.trial.playlistmaker.data.repository
 import android.media.MediaPlayer
 import com.trial.playlistmaker.domain.api.PlayerRepository
 
-class PlayerRepositoryImpl: PlayerRepository {
+class PlayerRepositoryImpl : PlayerRepository {
 
     private var mediaPlayer = MediaPlayer()
     private var playerState = STATE_DEFAULT
@@ -20,7 +20,8 @@ class PlayerRepositoryImpl: PlayerRepository {
     }
 
     override fun releasePlayer() {
-        mediaPlayer.release()    }
+        mediaPlayer.release()
+    }
 
     private fun startPlayer() {
         mediaPlayer.start()

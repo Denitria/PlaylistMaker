@@ -7,8 +7,7 @@ import kotlinx.serialization.Serializable
 data class Track(
     val trackName: String,
     val artistName: String,
-    @SerializedName("trackTimeMillis")
-    val trackTime: String,
+    @SerializedName("trackTimeMillis") val trackTime: String,
     var artworkUrl100: String,
     val trackId: Int,
     val collectionName: String,

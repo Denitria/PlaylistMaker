@@ -3,7 +3,7 @@ package com.trial.playlistmaker.domain.impl
 import com.trial.playlistmaker.domain.api.PlayerInteractor
 import com.trial.playlistmaker.domain.api.PlayerRepository
 
-class PlayerInteractorImpl (private val repository: PlayerRepository) : PlayerInteractor {
+class PlayerInteractorImpl(private val repository: PlayerRepository) : PlayerInteractor {
 
     override fun playbackControl() {
         repository.playbackControl()
@@ -20,6 +20,7 @@ class PlayerInteractorImpl (private val repository: PlayerRepository) : PlayerIn
     override fun releasePlayer() {
         repository.releasePlayer()
     }
+
     override fun getState(): Int {
         return repository.getState()
     }

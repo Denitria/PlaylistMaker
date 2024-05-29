@@ -1,11 +1,11 @@
 package com.trial.playlistmaker.presentation.ui.main
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import com.trial.playlistmaker.presentation.ui.media.MediatekaActivity
+import androidx.appcompat.app.AppCompatActivity
 import com.trial.playlistmaker.R
+import com.trial.playlistmaker.presentation.ui.media.MediatekaActivity
 import com.trial.playlistmaker.presentation.ui.search.SearchActivity
 import com.trial.playlistmaker.presentation.ui.settings.SettingsActivity
 
