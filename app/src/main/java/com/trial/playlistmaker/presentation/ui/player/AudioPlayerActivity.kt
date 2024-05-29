@@ -111,8 +111,8 @@ class AudioPlayerActivity : AppCompatActivity() {
 
     override fun onPause() {
         super.onPause()
-        playerInteractor.pausePlayer()
         pause()
+        playerInteractor.pausePlayer()
     }
 
     override fun onDestroy() {
