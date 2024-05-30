@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.content.Context
 import android.icu.text.SimpleDateFormat
@@ -11,12 +11,14 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
+import com.trial.playlistmaker.domain.models.Track
 import java.util.Locale
 
-class TrackAdapter(private val data: ArrayList<Track>,
-                   private val onTrackClickListener: OnTrackClickListener
-) :
-    RecyclerView.Adapter<TrackViewHolder>() {
+class TrackAdapter(
+    private val data: ArrayList<Track>, private val onTrackClickListener: OnTrackClickListener
+) : RecyclerView.Adapter<TrackViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TrackViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.track_view, parent, false)
@@ -24,15 +26,15 @@ class TrackAdapter(private val data: ArrayList<Track>,
     }
 
     override fun getItemCount(): Int {
-        return data!!.size
+        return data.size
     }
 
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
-        holder.bind(data!![position])
+        holder.bind(data[position])
         holder.itemView.setOnClickListener { onTrackClickListener.onTrackClick(data[holder.adapterPosition]) }
-        }
-
     }
+
+}
 
 class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
     private val trackName: TextView = itemView.findViewById(R.id.trackName)
@@ -49,9 +51,7 @@ class TrackViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         } else {
             trackTime.text = "—"
         }
-        Glide.with(this.itemView.context)
-            .load(model.artworkUrl100)
-            .fitCenter().dontAnimate()
+        Glide.with(this.itemView.context).load(model.artworkUrl100).fitCenter().dontAnimate()
             .placeholder(R.drawable.placeholder)
             .transform(RoundedCorners(dpToPx(2f, itemView.context))).into(trackImage)
     }

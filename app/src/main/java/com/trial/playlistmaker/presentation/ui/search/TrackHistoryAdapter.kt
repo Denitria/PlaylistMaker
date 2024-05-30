@@ -1,14 +1,16 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
+import com.trial.playlistmaker.domain.models.Track
 
-
-class TrackHistoryAdapter(    private val onTrackClickListener: OnTrackClickListener
-) :
-    RecyclerView.Adapter<TrackViewHolder>() {
+class TrackHistoryAdapter(
+    private val onTrackClickListener: OnTrackClickListener
+) : RecyclerView.Adapter<TrackViewHolder>() {
     private var tracksHistoryList: MutableList<Track> = mutableListOf()
     private val limit = 10
     fun updateTracks(newTracks: MutableList<Track>) {
@@ -54,5 +56,5 @@ class TrackHistoryAdapter(    private val onTrackClickListener: OnTrackClickList
     override fun onBindViewHolder(holder: TrackViewHolder, position: Int) {
         holder.bind(tracksHistoryList[position])
         holder.itemView.setOnClickListener { onTrackClickListener.onTrackClick(tracksHistoryList[holder.adapterPosition]) }
-        }
     }
+}

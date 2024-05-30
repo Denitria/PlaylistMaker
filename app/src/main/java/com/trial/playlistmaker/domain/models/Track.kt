@@ -1,4 +1,4 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.domain.models
 
 import com.google.gson.annotations.SerializedName
 import kotlinx.serialization.Serializable
@@ -7,8 +7,7 @@ import kotlinx.serialization.Serializable
 data class Track(
     val trackName: String,
     val artistName: String,
-    @SerializedName("trackTimeMillis")
-    val trackTime: String,
+    @SerializedName("trackTimeMillis") val trackTime: String,
     var artworkUrl100: String,
     val trackId: Int,
     val collectionName: String,

@@ -1,9 +1,8 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.presentation.ui.search
 
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -13,15 +12,23 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.gson.Gson
+import com.trial.playlistmaker.R
+import com.trial.playlistmaker.data.SearchHistory
+import com.trial.playlistmaker.data.dto.TracksResponse
+import com.trial.playlistmaker.data.network.ITunesAPI
+import com.trial.playlistmaker.databinding.ActivitySearchBinding
+import com.trial.playlistmaker.domain.api.OnTrackClickListener
+import com.trial.playlistmaker.domain.models.Track
+import com.trial.playlistmaker.presentation.ui.player.AudioPlayerActivity
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import com.google.gson.Gson
-import com.trial.playlistmaker.databinding.ActivitySearchBinding
 
 class SearchActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchBinding
@@ -64,17 +71,15 @@ class SearchActivity : AppCompatActivity() {
                     startActivity(audioIntent.putExtra(TRACK_VALUE, json))
                     searchHistory.searchHistoryList
                     searchHistory.addTrackToHistory(track)
-                    trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList!!)
+                    trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList)
                     trackHistoryAdapter.notifyDataSetChanged()
                 }
             }
         }
         trackHistoryAdapter = TrackHistoryAdapter(onHistoryClickListener)
 
-        retrofit = Retrofit.Builder()
-            .baseUrl(iTunesBaseUrl)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
+        retrofit = Retrofit.Builder().baseUrl(iTunesBaseUrl)
+            .addConverterFactory(GsonConverterFactory.create()).build()
 
         binding.searchHistoryRecyclerView.layoutManager = LinearLayoutManager(this)
         binding.searchHistoryRecyclerView.adapter = trackHistoryAdapter
@@ -86,7 +91,7 @@ class SearchActivity : AppCompatActivity() {
                 if (clickDebounce()) {
                     searchHistory.searchHistoryList
                     searchHistory.addTrackToHistory(track)
-                    trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList!!)
+                    trackHistoryAdapter.updateTracks(searchHistory.searchHistoryList)
                     trackHistoryAdapter.notifyDataSetChanged()
 
                     val audioPlayerIntent =
@@ -170,8 +175,7 @@ class SearchActivity : AppCompatActivity() {
 
         binding.inputEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == EditorInfo.IME_ACTION_DONE) {
-                binding.inputEditText.setOnClickListener {
-                }
+                binding.inputEditText.setOnClickListener {}
                 searchDebounce()
             }
             false
@@ -187,8 +191,7 @@ class SearchActivity : AppCompatActivity() {
             binding.errorText.visibility = View.VISIBLE
             binding.errorText.text = text
             if (additionalMessage.isNotEmpty()) {
-                Toast.makeText(applicationContext, additionalMessage, Toast.LENGTH_LONG)
-                    .show()
+                Toast.makeText(applicationContext, additionalMessage, Toast.LENGTH_LONG).show()
             }
         } else {
             binding.errorText.visibility = View.GONE
@@ -203,8 +206,7 @@ class SearchActivity : AppCompatActivity() {
             binding.searchRecyclerView.visibility = View.GONE
 
             iTunesService.search(binding.inputEditText.text.toString()).enqueue(/* callback = */
-                object :
-                    Callback<TracksResponse> {
+                object : Callback<TracksResponse> {
                     @SuppressLint("NotifyDataSetChanged")
                     override fun onResponse(
                         call: Call<TracksResponse>,
@@ -232,8 +234,7 @@ class SearchActivity : AppCompatActivity() {
                             }
                         } else {
                             showMessage(
-                                getString(R.string.something_went_wrong),
-                                response.code().toString()
+                                getString(R.string.something_went_wrong), response.code().toString()
                             )
                         }
                     }

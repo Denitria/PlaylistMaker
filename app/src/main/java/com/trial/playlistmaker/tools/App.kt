@@ -1,16 +1,13 @@
-package com.trial.playlistmaker
+package com.trial.playlistmaker.tools
 
 import android.app.Application
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatDelegate
 
-
 const val DARK_THEME_SHARED_PREFERENCES = "app_dark_theme_preference"
 const val SETTING_THEME = "state_of_dark_theme"
 
-class App: Application(){
-
-
+class App : Application() {
     var nightTheme: Boolean = false
     lateinit var settingsSharedPrefs: SharedPreferences
 
